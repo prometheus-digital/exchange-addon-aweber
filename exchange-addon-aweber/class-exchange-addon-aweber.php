@@ -577,8 +577,10 @@ class TGM_Exchange_Aweber {
                     $data       = apply_filters( 'tgm_exchange_aweber_optin_data', $data );
 
                     // Process the optin.
-                    $subscribers    = $list->subscribers;
-                    $new_subscriber = $subscribers->create( $data );
+                    if ( $data ) {
+                        $subscribers    = $list->subscribers;
+                        $new_subscriber = $subscribers->create( $data );
+                    }
                     break;
                 }
             }
