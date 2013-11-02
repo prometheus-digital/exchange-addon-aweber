@@ -568,13 +568,13 @@ class TGM_Exchange_Aweber {
             $account = $aweber->getAccount( $this->get_setting( 'aweber-access-token' ), $this->get_setting( 'aweber-access-secret' ) );
             foreach ( $account->lists as $offset => $list ) {
                 if ( $list->id == $this->get_setting( 'aweber-list' ) ) {
-                    $list   = $account->loadFromUrl( '/accounts/' . $account->id . '/lists/' . $list->id );
+                    $list = $account->loadFromUrl( '/accounts/' . $account->id . '/lists/' . $list->id );
                     // Prepare optin variables.
-                    $email          = trim( $_POST['email'] );
-                    $first_name     = ! empty( $_POST['first_name'] ) ? trim( $_POST['first_name'] ) : '';
-                    $last_name      = ! empty( $_POST['last_name'] )  ? trim( $_POST['last_name'] )  : '';
-                    $data           = array( 'email' => $_POST['email'], 'name' => $first_name . ' ' . $last_name );
-                    $data           = apply_filters( 'tgm_exchange_aweber_optin_data', $data );
+                    $email      = trim( $_POST['email'] );
+                    $first_name = ! empty( $_POST['first_name'] ) ? trim( $_POST['first_name'] ) : '';
+                    $last_name  = ! empty( $_POST['last_name'] )  ? trim( $_POST['last_name'] )  : '';
+                    $data       = array( 'email' => $_POST['email'], 'name' => $first_name . ' ' . $last_name );
+                    $data       = apply_filters( 'tgm_exchange_aweber_optin_data', $data );
 
                     // Process the optin.
                     $subscribers    = $list->subscribers;
