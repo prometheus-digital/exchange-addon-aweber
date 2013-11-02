@@ -1,4 +1,4 @@
-exchange-addon-aweber
-=====================
+Aweber Addon for Exchange
+======================
 
-Integrates Aweber into the iThemes Exchange plugin.
+**Integrates Aweber into the iThemes Exchange plugin.**
