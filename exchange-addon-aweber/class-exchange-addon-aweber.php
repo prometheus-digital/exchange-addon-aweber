@@ -403,11 +403,7 @@ class TGM_Exchange_Aweber {
     public function get_setting( $setting = '' ) {
 
         $settings = get_option( 'tgm_exchange_aweber' );
-
-        if ( 'aweber-label' == $setting )
-            return isset( $settings[$setting] ) ? $settings[$setting] : __( 'Sign up to receive updates via email!', 'tgm-exchange-aweber' );
-        else
-            return isset( $settings[$setting] ) ? $settings[$setting] : '';
+        return isset( $settings[$setting] ) ? $settings[$setting] : '';
 
     }
 
@@ -433,7 +429,7 @@ class TGM_Exchange_Aweber {
         } else {
             // Load the Aweber API.
             if ( ! class_exists( 'AweberAPI' ) )
-		        require_once plugin_dir_path( TGM_EXCHANGE_AWEBER_FILE ) . 'lib/aweber/aweber_api.php';
+                require_once plugin_dir_path( TGM_EXCHANGE_AWEBER_FILE ) . 'lib/aweber/aweber_api.php';
 
             // Check if the access key and token are already set. If so, use that, otherwise grab the necessary info.
             if ( '' === trim( $this->get_setting( 'aweber-auth' ) ) || '' === trim( $this->get_setting( 'aweber-auth-key' ) ) || '' === trim( $this->get_setting( 'aweber-auth-token' ) ) || '' === trim( $this->get_setting( 'aweber-access-token' ) ) || '' === trim( $this->get_setting( 'aweber-access-secret' ) ) ) {
@@ -446,54 +442,54 @@ class TGM_Exchange_Aweber {
                 $oauth      = isset( $data[4] ) ? $data[4] : false;
 
                 // Initiate the API.
-				$aweber = new AWeberAPI( $auth_key, $auth_token );
-				$aweber->user->requestToken = $req_key;
-				$aweber->user->tokenSecret  = $req_token;
-				$aweber->user->verifier     = $oauth;
+                $aweber = new AWeberAPI( $auth_key, $auth_token );
+                $aweber->user->requestToken = $req_key;
+                $aweber->user->tokenSecret  = $req_token;
+                $aweber->user->verifier     = $oauth;
 
-				// Attempt to grab an authorization token or produce an error.
-				try {
-					list( $access_token, $access_token_secret ) = $aweber->getAccessToken();
-				} catch ( AWeberException $e ) {
-				    $html .= '<select id="tgm-exchange-aweber-lists" class="tgm-exchange-error" name="_tgm_exchange_aweber[aweber-list]" disabled="disabled">';
+                // Attempt to grab an authorization token or produce an error.
+                try {
+                    list( $access_token, $access_token_secret ) = $aweber->getAccessToken();
+                } catch ( AWeberException $e ) {
+                    $html .= '<select id="tgm-exchange-aweber-lists" class="tgm-exchange-error" name="_tgm_exchange_aweber[aweber-list]" disabled="disabled">';
                         $html .= '<option value="none">' . __( 'Aweber was unable to verify your authorization token. Please try again.', 'tgm-exchange-aweber' ) . '</option>';
                     $html .= '</select>';
                     $html .= '<img class="tgm-exchange-loading" src="' . includes_url( 'images/wpspin.gif' ) . '" alt="" />';
-					return $html;
-				}
+                    return $html;
+                }
 
-				// Now try to access the account. If this fails, we need more permissions.
-				try {
-					$account = $aweber->getAccount();
-				} catch ( AWeberException $e ) {
-				    $html .= '<select id="tgm-exchange-aweber-lists" class="tgm-exchange-error" name="_tgm_exchange_aweber[aweber-list]" disabled="disabled">';
+                // Now try to access the account. If this fails, we need more permissions.
+                try {
+                    $account = $aweber->getAccount();
+                } catch ( AWeberException $e ) {
+                    $html .= '<select id="tgm-exchange-aweber-lists" class="tgm-exchange-error" name="_tgm_exchange_aweber[aweber-list]" disabled="disabled">';
                         $html .= '<option value="none">' . __( 'Aweber was unable to grant access to your account data. Please try again.', 'tgm-exchange-aweber' ) . '</option>';
                     $html .= '</select>';
                     $html .= '<img class="tgm-exchange-loading" src="' . includes_url( 'images/wpspin.gif' ) . '" alt="" />';
-					return $html;
-				}
+                    return $html;
+                }
 
-				// If we have reached this point, we have connected to the API successfully. Save the data.
-				$settings                         = get_option( 'tgm_exchange_aweber' );
-				$settings['aweber-auth']          = $auth;
-				$settings['aweber-auth-key']      = $auth_key;
-				$settings['aweber-auth-token']    = $auth_token;
-				$settings['aweber-access-token']  = $access_token;
-				$settings['aweber-access-secret'] = $access_token_secret;
-				update_option( 'tgm_exchange_aweber', $settings );
+                // If we have reached this point, we have connected to the API successfully. Save the data.
+                $settings                         = get_option( 'tgm_exchange_aweber' );
+                $settings['aweber-auth']          = $auth;
+                $settings['aweber-auth-key']      = $auth_key;
+                $settings['aweber-auth-token']    = $auth_token;
+                $settings['aweber-access-token']  = $access_token;
+                $settings['aweber-access-secret'] = $access_token_secret;
+                update_option( 'tgm_exchange_aweber', $settings );
 
-				// Generate and send back list data.
-				$html .= '<select id="tgm-exchange-aweber-lists" name="_tgm_exchange_aweber[aweber-list]">';
+                // Generate and send back list data.
+                $html .= '<select id="tgm-exchange-aweber-lists" name="_tgm_exchange_aweber[aweber-list]">';
                     foreach ( $account->lists as $offset => $list )
                         $html .= '<option value="' . $list->id . '"' . selected( $list->id, $this->get_setting( 'aweber-list' ), false ) . '>' . $list->name . '</option>';
                 $html .= '</select>';
                 $html .= '<img class="tgm-exchange-loading" src="' . includes_url( 'images/wpspin.gif' ) . '" alt="" />';
             } else {
                 $aweber  = new AweberAPI( $this->get_setting( 'aweber-auth-key' ), $this->get_setting( 'aweber-auth-token' ) );
-				$account = $aweber->getAccount( $this->get_setting( 'aweber-access-token' ), $this->get_setting( 'aweber-access-secret' ) );
+                $account = $aweber->getAccount( $this->get_setting( 'aweber-access-token' ), $this->get_setting( 'aweber-access-secret' ) );
 
-				// Generate and send back list data.
-				$html .= '<select id="tgm-exchange-aweber-lists" name="_tgm_exchange_aweber[aweber-list]">';
+                // Generate and send back list data.
+                $html .= '<select id="tgm-exchange-aweber-lists" name="_tgm_exchange_aweber[aweber-list]">';
                     foreach ( $account->lists as $offset => $list )
                         $html .= '<option value="' . $list->id . '"' . selected( $list->id, $this->get_setting( 'aweber-list' ), false ) . '>' . $list->name . '</option>';
                 $html .= '</select>';
@@ -564,29 +560,29 @@ class TGM_Exchange_Aweber {
             return;
 
         // Load the Aweber API.
-		if ( ! class_exists( 'AweberAPI' ) )
-		    require_once plugin_dir_path( TGM_EXCHANGE_AWEBER_FILE ) . 'lib/aweber/aweber_api.php';
+        if ( ! class_exists( 'AweberAPI' ) )
+            require_once plugin_dir_path( TGM_EXCHANGE_AWEBER_FILE ) . 'lib/aweber/aweber_api.php';
 
         $aweber = new AweberAPI( $this->get_setting( 'aweber-auth-key' ), $this->get_setting( 'aweber-auth-token' ) );
-		try {
-		    $account = $aweber->getAccount( $this->get_setting( 'aweber-access-token' ), $this->get_setting( 'aweber-access-secret' ) );
-		    foreach ( $account->lists as $offset => $list ) {
-			    if ( $list->id == $this->get_setting( 'aweber-list' ) ) {
-				    $list   = $account->loadFromUrl( '/accounts/' . $account->id . '/lists/' . $list->id );
-				    // Prepare optin variables.
+        try {
+            $account = $aweber->getAccount( $this->get_setting( 'aweber-access-token' ), $this->get_setting( 'aweber-access-secret' ) );
+            foreach ( $account->lists as $offset => $list ) {
+                if ( $list->id == $this->get_setting( 'aweber-list' ) ) {
+                    $list   = $account->loadFromUrl( '/accounts/' . $account->id . '/lists/' . $list->id );
+                    // Prepare optin variables.
                     $email          = trim( $_POST['email'] );
                     $first_name     = ! empty( $_POST['first_name'] ) ? trim( $_POST['first_name'] ) : '';
                     $last_name      = ! empty( $_POST['last_name'] )  ? trim( $_POST['last_name'] )  : '';
-				    $data           = array( 'email' => $_POST['email'], 'name' => $first_name . ' ' . $last_name );
-				    $data           = apply_filters( 'tgm_exchange_aweber_optin_data', $data );
+                    $data           = array( 'email' => $_POST['email'], 'name' => $first_name . ' ' . $last_name );
+                    $data           = apply_filters( 'tgm_exchange_aweber_optin_data', $data );
 
-				    // Process the optin.
-				    $subscribers    = $list->subscribers;
-				    $new_subscriber = $subscribers->create( $data );
-				    break;
+                    // Process the optin.
+                    $subscribers    = $list->subscribers;
+                    $new_subscriber = $subscribers->create( $data );
+                    break;
                 }
-		    }
-		} catch( AWeberAPIException $e ) {}
+            }
+        } catch( AWeberAPIException $e ) {}
 
     }
 
