@@ -15,7 +15,7 @@
  * Version:      1.0.0
  * Author:       Thomas Griffin
  * Author URI:   http://thomasgriffinmedia.com/
- * Text Domain:  tgm-exchange-aweber
+ * Text Domain:  LION
  * Contributors: griffinjt
  * License:      GPL-2.0+
  * License URI:  http://www.gnu.org/licenses/gpl-2.0.txt
