@@ -28,6 +28,28 @@ if ( ! defined( 'WPINC' ) ) die;
 // Define constants.
 define( 'TGM_EXCHANGE_AWEBER_FILE', __FILE__ );
 
+// Register the plugin updater.
+add_action( 'ithemes_updater_register', 'tgm_exchange_aweber_updater' );
+/**
+ * Registers the iThemes updater with the addon.
+ *
+ * @since 1.0.0
+ *
+ * @param object $updater The iThemes updater object.
+ */
+function tgm_exchange_aweber_updater( $updater ) {
+
+    // Return early if not in the admin.
+    if ( ! is_admin() ) return;
+
+    // Load the updater class.
+    require_once dirname( __FILE__ ) . '/lib/updater/load.php';
+
+    // Register the addon with the updater.
+    $updater->register( 'exchange-addon-aweber', __FILE__ );
+
+}
+
 // Register the addon with the Exchange engine.
 add_action( 'it_exchange_register_addons', 'tgm_exchange_aweber_register' );
 /**
