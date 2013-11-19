@@ -1,6 +1,6 @@
 <?php
 /**
- * iThemes Exchange - Aweber Add-on class.
+ * iThemes Exchange - AWeber Add-on class.
  *
  * @package   TGM_Exchange_Aweber
  * @author    Thomas Griffin
@@ -31,7 +31,7 @@ class TGM_Exchange_Aweber {
      *
      * @var string
      */
-    public $plugin_name = 'iThemes Exchange - Aweber Add-on';
+    public $plugin_name = 'iThemes Exchange - AWeber Add-on';
 
     /**
      * Unique plugin identifier.
@@ -176,7 +176,7 @@ class TGM_Exchange_Aweber {
         ?>
         <div id="tgm-exchange-aweber-nag" class="it-exchange-nag">
             <?php
-            printf( __( 'To use the Aweber add-on for iThemes Exchange, you must be using iThemes Exchange version 1.0.3 or higher. <a href="%s">Please update now</a>.', 'LION' ), admin_url( 'update-core.php' ) );
+            printf( __( 'To use the AWeber add-on for iThemes Exchange, you must be using iThemes Exchange version 1.0.3 or higher. <a href="%s">Please update now</a>.', 'LION' ), admin_url( 'update-core.php' ) );
             ?>
         </div>
         <?php
@@ -227,7 +227,7 @@ class TGM_Exchange_Aweber {
         ?>
         <div class="wrap tgm-exchange-aweber">
             <?php screen_icon( 'it-exchange' ); ?>
-            <h2><?php _e( 'Aweber Settings', 'LION' ); ?></h2>
+            <h2><?php _e( 'AWeber Settings', 'LION' ); ?></h2>
 
             <?php if ( ! empty( $this->errors ) ) : ?>
                 <div id="message" class="error"><p><strong><?php echo implode( '<br>', $this->errors ); ?></strong></p></div>
@@ -238,33 +238,33 @@ class TGM_Exchange_Aweber {
             <?php endif; ?>
 
             <?php if ( $this->reset ) : ?>
-                <div id="message" class="updated"><p><strong><?php _e( 'Your Aweber authorization code has been reset successfully!', 'LION' ); ?></strong></p></div>
+                <div id="message" class="updated"><p><strong><?php _e( 'Your AWeber authorization code has been reset successfully!', 'LION' ); ?></strong></p></div>
             <?php endif; ?>
 
             <?php do_action( 'it_exchange_aweber_settings_page_top' ); ?>
             <?php do_action( 'it_exchange_addon_settings_page_top' ); ?>
 
             <div class="tgm-exchange-aweber-settings">
-                <p><?php _e( 'To setup Aweber in Exchange, fill out the settings below.', 'LION' ); ?></p>
+                <p><?php _e( 'To setup AWeber in Exchange, fill out the settings below.', 'LION' ); ?></p>
                 <form class="tgm-exchange-aweber-form" action="admin.php?page=it-exchange-addons&add-on-settings=aweber" method="post">
                     <?php wp_nonce_field( 'tgm-exchange-aweber-form' ); ?>
                     <input type="hidden" name="tgm-exchange-aweber-form" value="1" />
 
-                    <p><a href="#" id="tgm-exchange-aweber-auth-code" class="button button-secondary" title="<?php esc_attr_e( 'Click Here to Get Your Aweber Authorization Code', 'LION' ); ?>"><?php _e( 'Click Here to Get Your Aweber Authorization Code', 'LION' ); ?></a></p>
+                    <p><a href="#" id="tgm-exchange-aweber-auth-code" class="button button-secondary" title="<?php esc_attr_e( 'Click Here to Get Your AWeber Authorization Code', 'LION' ); ?>"><?php _e( 'Click Here to Get Your AWeber Authorization Code', 'LION' ); ?></a></p>
 
                     <table class="form-table">
                         <tbody>
                             <tr valign="middle">
                                 <th scope="row">
-                                    <label for="tgm-exchange-aweber-auth"><strong><?php _e( 'Aweber Auth Code', 'LION' ); ?></strong></label>
+                                    <label for="tgm-exchange-aweber-auth"><strong><?php _e( 'AWeber Auth Code', 'LION' ); ?></strong></label>
                                 </th>
                                 <td>
-                                    <input id="tgm-exchange-aweber-auth" type="password" name="_tgm_exchange_aweber[aweber-auth]" value="<?php echo $this->get_setting( 'aweber-auth' ); ?>" placeholder="<?php esc_attr_e( 'Enter your Aweber auth code here.', 'LION' ); ?>" />
+                                    <input id="tgm-exchange-aweber-auth" type="password" name="_tgm_exchange_aweber[aweber-auth]" value="<?php echo $this->get_setting( 'aweber-auth' ); ?>" placeholder="<?php esc_attr_e( 'Enter your AWeber auth code here.', 'LION' ); ?>" />
                                 </td>
                             </tr>
                             <tr valign="middle">
                                 <th scope="row">
-                                    <label for="tgm-exchange-aweber-lists"><strong><?php _e( 'Aweber List', 'LION' ); ?></strong></label>
+                                    <label for="tgm-exchange-aweber-lists"><strong><?php _e( 'AWeber List', 'LION' ); ?></strong></label>
                                 </th>
                                 <td>
                                     <div class="tgm-exchange-aweber-list-output">
@@ -274,15 +274,15 @@ class TGM_Exchange_Aweber {
                             </tr>
                             <tr valign="middle">
                                 <th scope="row">
-                                    <label for="tgm-exchange-aweber-label"><strong><?php _e( 'Aweber Label', 'LION' ); ?></strong></label>
+                                    <label for="tgm-exchange-aweber-label"><strong><?php _e( 'AWeber Label', 'LION' ); ?></strong></label>
                                 </th>
                                 <td>
-                                    <input id="tgm-exchange-aweber-label" type="text" name="_tgm_exchange_aweber[aweber-label]" value="<?php echo $this->get_setting( 'aweber-label' ); ?>" placeholder="<?php esc_attr_e( 'Enter your Aweber username here.', 'LION' ); ?>" />
+                                    <input id="tgm-exchange-aweber-label" type="text" name="_tgm_exchange_aweber[aweber-label]" value="<?php echo $this->get_setting( 'aweber-label' ); ?>" placeholder="<?php esc_attr_e( 'Enter your AWeber username here.', 'LION' ); ?>" />
                                 </td>
                             </tr>
                             <tr valign="middle">
                                 <th scope="row">
-                                    <label for="tgm-exchange-aweber-checked"><strong><?php _e( 'Check Aweber box by default?', 'LION' ); ?></strong></label>
+                                    <label for="tgm-exchange-aweber-checked"><strong><?php _e( 'Check AWeber box by default?', 'LION' ); ?></strong></label>
                                 </th>
                                 <td>
                                     <input id="tgm-exchange-aweber-checked" type="checkbox" name="_tgm_exchange_aweber[aweber-checked]" value="<?php echo (bool) $this->get_setting( 'aweber-checked' ); ?>" <?php checked( $this->get_setting( 'aweber-checked' ), 1 ); ?> />
@@ -293,7 +293,7 @@ class TGM_Exchange_Aweber {
 
                     <p class="submit">
                         <input type="submit" class="button button-primary button-large" id="_tgm_exchange_aweber[save]" name="_tgm_exchange_aweber[save]" value="<?php esc_attr_e( 'Save Changes', 'LION' ); ?>" />
-                        <input type="submit" class="button button-secondary button-large" id="_tgm_exchange_aweber[reset]" name="_tgm_exchange_aweber[reset]" value="<?php esc_attr_e( 'Reset Aweber Authorization Code', 'LION' ); ?>" />
+                        <input type="submit" class="button button-secondary button-large" id="_tgm_exchange_aweber[reset]" name="_tgm_exchange_aweber[reset]" value="<?php esc_attr_e( 'Reset AWeber Authorization Code', 'LION' ); ?>" />
                     </p>
                 </form>
             </div>
@@ -393,11 +393,11 @@ class TGM_Exchange_Aweber {
     }
 
     /**
-     * Helper function to retrieve all available Aweber lists for the account.
+     * Helper function to retrieve all available AWeber lists for the account.
      *
      * @since 1.0.0
      *
-     * @param string $auth The Aweber auth code.
+     * @param string $auth The AWeber auth code.
      * @return string An HTML string with lists or empty dropdown.
      */
     public function get_aweber_lists( $auth = '' ) {
@@ -412,7 +412,7 @@ class TGM_Exchange_Aweber {
             $html .= '</select>';
             $html .= '<img class="tgm-exchange-loading" src="' . includes_url( 'images/wpspin.gif' ) . '" alt="" />';
         } else {
-            // Load the Aweber API.
+            // Load the AWeber API.
             if ( ! class_exists( 'AweberAPI' ) )
 		        require_once plugin_dir_path( TGM_EXCHANGE_AWEBER_FILE ) . 'lib/aweber/aweber_api.php';
 
@@ -437,7 +437,7 @@ class TGM_Exchange_Aweber {
 					list( $access_token, $access_token_secret ) = $aweber->getAccessToken();
 				} catch ( AWeberException $e ) {
 				    $html .= '<select id="tgm-exchange-aweber-lists" class="tgm-exchange-error" name="_tgm_exchange_aweber[aweber-list]" disabled="disabled">';
-                        $html .= '<option value="none">' . __( 'Aweber was unable to verify your authorization token. Please try again.', 'LION' ) . '</option>';
+                        $html .= '<option value="none">' . __( 'AWeber was unable to verify your authorization token. Please try again.', 'LION' ) . '</option>';
                     $html .= '</select>';
                     $html .= '<img class="tgm-exchange-loading" src="' . includes_url( 'images/wpspin.gif' ) . '" alt="" />';
 					return $html;
@@ -448,7 +448,7 @@ class TGM_Exchange_Aweber {
 					$account = $aweber->getAccount();
 				} catch ( AWeberException $e ) {
 				    $html .= '<select id="tgm-exchange-aweber-lists" class="tgm-exchange-error" name="_tgm_exchange_aweber[aweber-list]" disabled="disabled">';
-                        $html .= '<option value="none">' . __( 'Aweber was unable to grant access to your account data. Please try again.', 'LION' ) . '</option>';
+                        $html .= '<option value="none">' . __( 'AWeber was unable to grant access to your account data. Please try again.', 'LION' ) . '</option>';
                     $html .= '</select>';
                     $html .= '<img class="tgm-exchange-loading" src="' . includes_url( 'images/wpspin.gif' ) . '" alt="" />';
 					return $html;
@@ -555,7 +555,7 @@ class TGM_Exchange_Aweber {
         if ( ! isset( $_POST['tgm-exchange-aweber-signup-field'] ) || empty( $_POST['email'] ) || ! is_email( $_POST['email'] ) )
             return;
 
-        // Load the Aweber API.
+        // Load the AWeber API.
 		if ( ! class_exists( 'AweberAPI' ) )
 		    require_once plugin_dir_path( TGM_EXCHANGE_AWEBER_FILE ) . 'lib/aweber/aweber_api.php';
 
@@ -595,7 +595,7 @@ class TGM_Exchange_Aweber {
         if (  '' === trim( $this->get_setting( 'aweber-auth' ) ) || '' === trim( $this->get_setting( 'aweber-auth-key' ) ) || '' === trim( $this->get_setting( 'aweber-auth-token' ) ) || '' === trim( $this->get_setting( 'aweber-access-token' ) ) || '' === trim( $this->get_setting( 'aweber-access-secret' ) ) )
             return;
 
-        // Load the Aweber API.
+        // Load the AWeber API.
 		if ( ! class_exists( 'AweberAPI' ) )
 		    require_once plugin_dir_path( TGM_EXCHANGE_AWEBER_FILE ) . 'lib/aweber/aweber_api.php';
 
