@@ -6,20 +6,21 @@
  * @author    Thomas Griffin
  * @license   GPL-2.0+
  * @link      http://thomasgriffinmedia.com/
- * @copyright 2013 Griffin Media, LLC. All rights reserved.
  *
  * @wordpress-plugin
  * Plugin Name:  iThemes Exchange - AWeber Add-on
  * Plugin URI:   http://ithemes.com/exchange/aweber/
  * Description:  Integrates AWeber into the iThemes Exchange plugin.
- * Version:      1.0.4
- * Author:       Thomas Griffin
- * Author URI:   http://thomasgriffinmedia.com/
+ * Version:      1.0.5
+ * Author:       iThemes
+ * Author URI:   http://ithemes.com/exchange
  * Text Domain:  LION
- * Contributors: griffinjt
+ * Contributors: ithemes, griffinj
  * License:      GPL-2.0+
  * License URI:  http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path:  /lang
+ *
+ * This add-on was originaly developed by Thomas Griffin <http://thomasgriffinmedia.com/>
  */
 
 // If this file is called directly, abort.
@@ -66,8 +67,8 @@ function tgm_exchange_aweber_register() {
         $options = array(
             'name'              => __( 'Aweber', 'tgm-exchange-aweber' ),
             'description'       => __( 'Adds an AWeber optin checkbox to the user registration form.', 'tgm-exchange-aweber' ),
-            'author'            => 'Thomas Griffin',
-            'author_url'        => 'http://thomasgriffinmedia.com/',
+            'author'            => 'iThemes',
+            'author_url'        => 'http://ithemes.com/exchange',
             'icon'              => ITUtility::get_url_from_file( dirname( __FILE__ ) . '/lib/images/aweber50px.png' ),
             'file'              => dirname( __FILE__ ) . '/class-exchange-addon-aweber.php',
             'category'          => 'email',
