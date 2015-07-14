@@ -11,7 +11,7 @@
  * Plugin Name:  iThemes Exchange - AWeber Add-on
  * Plugin URI:   http://ithemes.com/exchange/aweber/
  * Description:  Integrates AWeber into the iThemes Exchange plugin.
- * Version:      1.0.8
+ * Version:      1.0.9
  * Author:       iThemes
  * Author URI:   http://ithemes.com/exchange
  * Text Domain:  LION
