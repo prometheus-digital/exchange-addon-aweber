@@ -1,6 +1,6 @@
 <?php
 /**
- * iThemes Exchange - AWeber Add-on.
+ * ExchangeWP - AWeber Add-on.
  *
  * @package   TGM_Exchange_Aweber
  * @author    Thomas Griffin
@@ -8,18 +8,18 @@
  * @link      http://thomasgriffinmedia.com/
  *
  * @wordpress-plugin
- * Plugin Name:  iThemes Exchange - AWeber Add-on
- * Plugin URI:   http://ithemes.com/exchange/aweber/
- * Description:  Integrates AWeber into the iThemes Exchange plugin.
+ * Plugin Name:  ExchangeWP - AWeber Add-on
+ * Plugin URI:   https://exchangewp.com/downloads/aweber/
+ * Description:  Integrates AWeber into the ExchangeWP plugin.
  * Version:      1.0.9
- * Author:       iThemes
- * Author URI:   http://ithemes.com/exchange
+ * Author:       ExchangeWP
+ * Author URI:   https://exchangewp.com/
  * Text Domain:  LION
- * Contributors: ithemes, griffinj
+ * Contributors: exchangewp, griffinj
  * License:      GPL-2.0+
  * License URI:  http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path:  /lang
- * iThemes Package: exchange-addon-aweber
+ * ExchangeWP Package: exchange-addon-aweber
  *
  * This add-on was originaly developed by Thomas Griffin <http://thomasgriffinmedia.com/>
  */
@@ -29,28 +29,6 @@ if ( ! defined( 'WPINC' ) ) die;
 
 // Define constants.
 define( 'TGM_EXCHANGE_AWEBER_FILE', __FILE__ );
-
-// Register the plugin updater.
-add_action( 'ithemes_updater_register', 'tgm_exchange_aweber_updater' );
-/**
- * Registers the iThemes updater with the addon.
- *
- * @since 1.0.0
- *
- * @param object $updater The iThemes updater object.
- */
-function tgm_exchange_aweber_updater( $updater ) {
-
-    // Return early if not in the admin.
-    if ( ! is_admin() ) return;
-
-    // Load the updater class.
-    require_once dirname( __FILE__ ) . '/lib/updater/load.php';
-
-    // Register the addon with the updater.
-    $updater->register( 'exchange-addon-aweber', __FILE__ );
-
-}
 
 // Register the addon with the Exchange engine.
 add_action( 'it_exchange_register_addons', 'tgm_exchange_aweber_register' );
@@ -68,8 +46,8 @@ function tgm_exchange_aweber_register() {
         $options = array(
             'name'              => __( 'Aweber', 'tgm-exchange-aweber' ),
             'description'       => __( 'Adds an AWeber optin checkbox to the user registration form.', 'tgm-exchange-aweber' ),
-            'author'            => 'iThemes',
-            'author_url'        => 'http://ithemes.com/exchange',
+            'author'            => 'ExchangeWP',
+            'author_url'        => 'https://exchangewp.com/',
             'icon'              => ITUtility::get_url_from_file( dirname( __FILE__ ) . '/lib/images/aweber50px.png' ),
             'file'              => dirname( __FILE__ ) . '/class-exchange-addon-aweber.php',
             'category'          => 'email',

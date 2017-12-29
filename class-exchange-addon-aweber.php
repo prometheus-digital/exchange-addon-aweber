@@ -1,6 +1,6 @@
 <?php
 /**
- * iThemes Exchange - AWeber Add-on class.
+ * ExchangeWP - AWeber Add-on class.
  *
  * @package   TGM_Exchange_Aweber
  * @author    Thomas Griffin
@@ -31,7 +31,7 @@ class TGM_Exchange_Aweber {
      *
      * @var string
      */
-    public $plugin_name = 'iThemes Exchange - AWeber Add-on';
+    public $plugin_name = 'ExchangeWP - AWeber Add-on';
 
     /**
      * Unique plugin identifier.
@@ -176,7 +176,7 @@ class TGM_Exchange_Aweber {
         ?>
         <div id="tgm-exchange-aweber-nag" class="it-exchange-nag">
             <?php
-            printf( __( 'To use the AWeber add-on for iThemes Exchange, you must be using iThemes Exchange version 1.0.3 or higher. <a href="%s">Please update now</a>.', 'LION' ), admin_url( 'update-core.php' ) );
+            printf( __( 'To use the AWeber add-on for ExchangeWP, you must be using ExchangeWP version 1.0.3 or higher. <a href="%s">Please update now</a>.', 'LION' ), admin_url( 'update-core.php' ) );
             ?>
         </div>
         <?php
